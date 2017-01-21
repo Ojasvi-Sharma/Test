@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic Calculator</title>
+	<style type="text/css">
+
+		.num{
+			height: 50px;
+			width: 100px;
+			margin: 10px;
+			background-color: #53110e;
+			float: left;
+			border: solid;
+			border-color: black;
+			font-size: 30px; 
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bolder;
+			border-radius: 15px;
+		}
+
+		#cont{
+			height: 350px;
+			width: 360px;
+			background-color: #d2c1a6;
+			border: solid;
+			border-color: black;
+			float: left;
+		}
+
+		#displ{
+			height: 44px;
+			width: 332px;
+			margin: 10px;
+			background-color: #d5d5d5;
+			border: solid;
+			border-color: black;
+			font-size: 40px;
+			float: left;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		#ops, #ext{
+			height: 350px;
+			width: 120px;
+			background-color: #d2c1a6;
+			border: solid;
+			border-color: black;
+			float: left; 
+		}
+
+		#displ{
+			margin-top: 10px;
+		}
+
+		.num0{
+			height: 50px;
+			width: 100px;
+			margin: 10px;
+			background-color: #53110e;
+			float: left;
+			border: solid;
+			border-color: black; 
+			margin-top: 15px;
+			font-size: 30px; 
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bolder;
+		}
+
+		#br{
+			height: 20px;
+			width: 290px;
+			background-color: #d2c1a6;
+			border: solid black;
+			float: left;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="cont">
+	<div type="text" name="Output" id="displ" value="0"></div>
+	
+	<button id="1" class="num" onclick="inp(this)">1</button>
+	<button id="2" class="num" onclick="inp(this)">2</button>
+	<button id="3" class="num" onclick="inp(this)">3</button>
+	<button id="4" class="num" onclick="inp(this)">4</button>
+	<button id="5" class="num" onclick="inp(this)">5</button>
+	<button id="6" class="num" onclick="inp(this)">6</button>
+	<button id="7" class="num" onclick="inp(this)">7</button>
+	<button id="8" class="num" onclick="inp(this)">8</button>
+	<button id="9" class="num" onclick="inp(this)">9</button>
+	<button id="0" class="num" onclick="inp(this)">0</button>
+	<button id="bro" class="num" onclick="opr(this)">(</button>
+	<button id="brc" class="num" onclick="opr(this)">)</button>
+</div>
+
+<div id="ops">
+	<button id="a" class="num" onclick="opr(this)">+</button>
+	<button id="b" class="num" onclick="opr(this)">-</button>
+	<button id="c" class="num" onclick="opr(this)">*</button>
+	<button id="d" class="num" onclick="opr(this)">/</button>
+	<button id="p" class="num" onclick="st=eval(st)+1">++</button>
+</div>
+
+<div id="ext">
+	<button id="e" class="num" onclick="ev()">=</button>
+	<button id="f" class="num" onclick="inp(this)">.</button>
+	<button id="g" class="num" onclick="sqrt()">root</button>
+	<button id="h" class="num" onclick="reset()">clear</button>
+	<button id="m" class="num" onclick="back()">del</button>
+</div>
+
+	<script type="text/javascript">
+		var st=' ';
+		var sr=' ';
+		var se=' ';
+		var fl=0;
+		var x;
+		function inp(o) {
+			//if(fl==0) {
+				st = st + o.innerHTML;
+				console.log(st);
+				document.getElementById("displ").innerHTML=st;
+			//}
+			//if(fl==1) {
+			//	sr = sr + o.innerHTML;
+			//	console.log(sr);
+			//	document.getElementById("displ").innerHTML=sr;
+			//}
+	}
+		function opr(p) {
+			fl=1;
+			x = p.id;
+			console.log(x);
+			st=st + p.innerHTML;
+			document.getElementById("displ").innerHTML=st;
+		}
+		function eq() {
+			if(x=='a')
+			{
+				se= +st + +sr;
+				fl=0;
+				console.log(se);
+				document.getElementById("displ").innerHTML=se;
+				st=se;
+				sr=' ';
+			}
+			else if(x=='b')
+			{
+				se= +st - +sr;
+				fl=0;
+				console.log(se);
+				document.getElementById("displ").innerHTML=se;
+				st=se;
+				sr=' ';
+			}
+			else if(x=='c')
+			{
+				se= +st * +sr;
+				fl=0;
+				console.log(se);
+				document.getElementById("displ").innerHTML=se;
+				st=se;
+				sr=' ';
+			}
+			else if(x=='d')
+			{
+				se= +st / +sr;
+				fl=0;
+				console.log(se);
+				document.getElementById("displ").innerHTML=se;
+				st=se;
+				sr=' ';
+			}
+		}
+
+		function ev() {
+			console.log(st);
+			sr=eval(st);
+			document.getElementById("displ").innerHTML = sr;
+			st=sr;
+		}
+
+		function sqrt() {
+			se= Math.sqrt(st);
+			console.log(se);
+			document.getElementById("displ").innerHTML=se;
+			st=se;
+		}
+
+		function reset() {
+			document.getElementById("displ").innerHTML='';
+			st=' ';
+			se=' ';
+			sr=' ';
+		}
+
+		function back() {
+			st=st.slice(0,st.length-1)
+			document.getElementById("displ").innerHTML=st;
+		}
+	</script>
+
+</body>
+
+</html>
