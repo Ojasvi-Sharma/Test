@@ -21,11 +21,11 @@ function checkKey(e) {
 
     e = e || window.event;
 
-    if (event.which == '65') {
-       xp-=5;
+    if (event.which == '65' && xp>=15) {
+       xp-=10;
     }
-    else if (event.which == '68') {
-       xp+=5;
+    else if (event.which == '83' && xp<=canvas.width-155) {
+       xp+=10;
     }
 
 }
@@ -46,6 +46,7 @@ for(c=0; c<12; c++) {
 }
 
 document.addEventListener("mousemove", moveMouse, false);
+document.addEventListener("keydown", checkKey, false);
 
 function paddle() {
 	ctx.clearRect(0, 0, 1270, 720);
@@ -144,8 +145,8 @@ function drawBricks() {
 
 function checkArrowKeys(e) {
     key= window.event? event.keyCode: e.keyCode;
-    if(key && key==65) { xp-=10; console.log('left');}
-    if(key && key==83) { xp+=10; console.log('right');}
+    if(key && key==65 && xp>=15) { xp-=10; console.log('left');}
+    if(key && key==83 && xp<=canvas.width-160) { xp+=10; console.log('right');}
 }
 
 //document.onkeydown = checkArrowKeys;
